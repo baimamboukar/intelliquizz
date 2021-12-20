@@ -26,7 +26,7 @@ def anglo_ordinary(subject, number):
     data = cursor.fetchall()
     objects_list = Converters.convert_questions(data)
     questions = json.dumps(objects_list)
-    return questions
+    return {"results": questions}
 
 
 
