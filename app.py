@@ -27,8 +27,5 @@ def anglo_ordinary(subject,level, number):
     objects_list = Converters.convert_questions(data)
     return {"results": objects_list}, 200
 
-
-
-
 # cursor.execute(f"INSERT INTO quizz VALUES(6, 'What is flutter ?', 'mobile-dev', 'anglophone', 'advanced', 'Google UIkit for cross-platform mobile apps', 'An open API for meteo - A new operating system - A unicorn India company', 'flutter')")
 #     query = "SELECT * FROM quizz"
