@@ -25,8 +25,7 @@ def anglo_ordinary(subject, number):
     cursor.execute("SELECT * FROM quizz WHERE subject = ? LIMIT ?", (subject, number))
     data = cursor.fetchall()
     objects_list = Converters.convert_questions(data)
-    questions = json.dumps(objects_list)
-    return {"results": questions}
+    return {"results": objects_list}
 
 
 
