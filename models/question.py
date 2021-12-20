@@ -21,6 +21,7 @@ class Question:
             'wrong_answers': self.wrong_answers,
             'topic': self.topic
         }
+        
     def fromJSON(self, json):
         self.id = json['id']
         self.label = json['label']
