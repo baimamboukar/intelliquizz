@@ -22,7 +22,7 @@ def anglo_ordinary(subject,level, number):
     intelliDB = IntelliquizzDB()
     db = intelliDB.connect()
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM quizz WHERE subject = ? LIMIT ?", (subject, number))
+    cursor.execute("SELECT * FROM quizz WHERE subject = ? AND level = ? LIMIT ?", (subject,level, number))
     data = cursor.fetchall()
     objects_list = Converters.convert_questions(data)
     return {"results": objects_list}, 200
