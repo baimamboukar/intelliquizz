@@ -17,8 +17,8 @@ def index():
     questions = json.dumps(objects_list)
     return questions
 
-@app.route("/anglo_ordinary/<subject>/<number>", )
-def anglo_ordinary(subject, number):
+@app.route("/<subject>/<level>/<number>/", )
+def anglo_ordinary(subject,level, number):
     intelliDB = IntelliquizzDB()
     db = intelliDB.connect()
     cursor = db.cursor()
