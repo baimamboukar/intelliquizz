@@ -17,7 +17,7 @@ def index():
     questions = json.dumps(objects_list)
     return questions
 
-@app.route("/anglo_ordinary/<subject>/<number>")
+@app.route("/anglo_ordinary/<subject>/<number>", )
 def anglo_ordinary(subject, number):
     intelliDB = IntelliquizzDB()
     db = intelliDB.connect()
@@ -25,7 +25,7 @@ def anglo_ordinary(subject, number):
     cursor.execute("SELECT * FROM quizz WHERE subject = ? LIMIT ?", (subject, number))
     data = cursor.fetchall()
     objects_list = Converters.convert_questions(data)
-    return {"results": objects_list}
+    return {"results": objects_list}, 200
 
 
 
