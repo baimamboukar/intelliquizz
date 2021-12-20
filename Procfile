@@ -1,1 +1,1 @@
-web: gunicorn app:intelliquizz
+web: gunicorn app:app
