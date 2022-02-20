@@ -1,6 +1,8 @@
 from flask import Flask
 from database.connexion import IntelliquizzDB
 from helpers.converters import Converters
+import gspread
+import json
 
 import json
 
@@ -27,5 +29,17 @@ def anglo_ordinary(subject,level, number):
     objects_list = Converters.convert_questions(data)
     return {"results": objects_list}, 200
 
-# cursor.execute(f"INSERT INTO quizz VALUES(6, 'What is flutter ?', 'mobile-dev', 'anglophone', 'advanced', 'Google UIkit for cross-platform mobile apps', 'An open API for meteo - A new operating system - A unicorn India company', 'flutter')")
-#     query = "SELECT * FROM quizz"
+
+@app.route("/<subject>/<level>/<topic>/<number>/", )
+def universal(subject,level,topic,number):
+    google_credentials = gspread.service_account(filename='credentials.json')
+    sheet = google_credentials.open_by_key("1L6NurushGZT7vDXeR2v4kMYxxahkdhLkhdmLLROmECY")
+    worksheet = sheet.worksheet("ICT")
+    questions = []
+    data = worksheet.get_all_records()
+    for question in data:
+        if(question["subject"] == subject and question["level"] == level and question["topic"] == topic):
+            questions.append(question)
+            if(len(questions) == number):
+                break
+    return {"results": questions}, 200
