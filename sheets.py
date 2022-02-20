@@ -12,7 +12,7 @@ questions = []
 data = worksheet.get_all_records()
 for question in data:
     if(question["subject"] == SUBJECT and question["level"] == DIFFICULTY and question["topic"] == TOPIC):
-        questions.append(question)
+        questions.append(json.dumps(question))
         if(len(questions) == NUMBER_OF_QUESTIONS):
             break
-print(json.dumps(questions))
+print(questions)
