@@ -39,7 +39,7 @@ def universal(subject,level,topic,number):
     data = worksheet.get_all_records()
     for question in data:
         if(question["subject"] == subject and question["level"] == level and question["topic"] == topic):
-            questions.append(question)
+            questions.append(json.dumps(question))
             if(len(questions) == number):
                 break
-    return {"results": [ question.toJSON() for question in questions]}, 200
+    return {"results":questions}, 200
