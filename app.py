@@ -15,7 +15,7 @@ def index():
     sheet = google_credentials.open_by_key("1L6NurushGZT7vDXeR2v4kMYxxahkdhLkhdmLLROmECY")
     worksheet = sheet.worksheet("ICT")
     data = worksheet.get_all_records()
-    return jsonify(data)
+    return json.dumps(data)
 
 
 @app.route("/<subject>/<level>/<number>/" )
@@ -26,11 +26,10 @@ def universal(subject,level,number):
     questions = []
     
     data = worksheet.get_all_records()
-    #matching_dict = list(filter(lambda x: x['subject'] == subject and x['level'] == level, data))
     for question in data:
         if(question["subject"] == subject and question["level"] == level):
             questions.append(question)
             if(len(questions) == number):
                 break
         
-    return {"results": questions}, 200
+    return {"results": json.dumps(questions)}, 200
