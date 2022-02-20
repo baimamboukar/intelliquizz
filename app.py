@@ -24,13 +24,13 @@ def universal(subject,level,number):
     sheet = google_credentials.open_by_key("1L6NurushGZT7vDXeR2v4kMYxxahkdhLkhdmLLROmECY")
     worksheet = sheet.worksheet(subject)
     questions = []
+    
     data = worksheet.get_all_records()
-    matching_dict = list(filter(lambda x: x['subject'] == subject and x['level'] == level, data))
+    #matching_dict = list(filter(lambda x: x['subject'] == subject and x['level'] == level, data))
     for question in data:
         if(question["subject"] == subject and question["level"] == level):
             questions.append(question)
             if(len(questions) == number):
                 break
-        print(type(json.dumps(matching_dict)))
-        print(type(jsonify(matching_dict)))
-    return {"results": json.dumps(matching_dict)}, 200
+        
+    return {"results": questions}, 200
