@@ -35,7 +35,7 @@ def universal(subject,level,number):
     google_credentials = gspread.service_account(filename='credentials.json')
     sheet = google_credentials.open_by_key("1L6NurushGZT7vDXeR2v4kMYxxahkdhLkhdmLLROmECY")
     worksheet = sheet.worksheet(subject)
-    questions = []
+    questions = [{'labe': '1', 'question': '2', 'answer': '3', 'subject': '4', 'level': '5', 'topic': '6', 'difficulty': '7', 'hint': '8', 'explanation': '9'}]
     data = worksheet.get_all_records()
     for question in data:
         if(question["subject"] == subject and question["level"] == level):
