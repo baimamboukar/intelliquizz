@@ -10,14 +10,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    intelliDB = IntelliquizzDB()
-    db = intelliDB.connect()
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM quizz")
-    data = cursor.fetchall()
-    objects_list = Converters.convert_questions(data)
-    questions = json.dumps(objects_list)
-    return questions
+    google_credentials = gspread.service_account(filename='credentials.json')
+    sheet = google_credentials.open_by_key("1L6NurushGZT7vDXeR2v4kMYxxahkdhLkhdmLLROmECY")
+    worksheet = sheet.worksheet("ICT")
+    data = worksheet.get_all_records()
+    return json.dumps(data)
 
 @app.route("/<subject>/<level>/<number>/", )
 def anglo_ordinary(subject,level, number):
@@ -30,7 +27,7 @@ def anglo_ordinary(subject,level, number):
     return {"results": objects_list}, 200
 
 
-@app.route("/<subject>/<level>/<number>/", )
+@app.route("/<subject>/<level>/<number>/" )
 def universal(subject,level,number):
     google_credentials = gspread.service_account(filename='credentials.json')
     sheet = google_credentials.open_by_key("1L6NurushGZT7vDXeR2v4kMYxxahkdhLkhdmLLROmECY")
@@ -42,4 +39,4 @@ def universal(subject,level,number):
             questions.append(json.dumps(question))
             if(len(questions) == number):
                 break
-    return {"results":questions}, 200
+    return {"results": json.dumps(questions)}, 200
