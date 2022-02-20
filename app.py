@@ -30,8 +30,8 @@ def anglo_ordinary(subject,level, number):
     return {"results": objects_list}, 200
 
 
-@app.route("/<subject>/<level>/<topic>/<number>/", )
-def universal(subject,level,topic,number):
+@app.route("/<subject>/<level>/<number>/", )
+def universal(subject,level,number):
     google_credentials = gspread.service_account(filename='credentials.json')
     sheet = google_credentials.open_by_key("1L6NurushGZT7vDXeR2v4kMYxxahkdhLkhdmLLROmECY")
     worksheet = sheet.worksheet(subject)
