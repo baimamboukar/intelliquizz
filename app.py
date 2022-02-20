@@ -34,7 +34,7 @@ def anglo_ordinary(subject,level, number):
 def universal(subject,level,topic,number):
     google_credentials = gspread.service_account(filename='credentials.json')
     sheet = google_credentials.open_by_key("1L6NurushGZT7vDXeR2v4kMYxxahkdhLkhdmLLROmECY")
-    worksheet = sheet.worksheet("ICT")
+    worksheet = sheet.worksheet(subject)
     questions = []
     data = worksheet.get_all_records()
     for question in data:
