@@ -42,4 +42,4 @@ def universal(subject,level,topic,number):
             questions.append(question)
             if(len(questions) == number):
                 break
-    return {"results": questions}, 200
+    return {"results": [ question.toJSON() for question in questions]}, 200
