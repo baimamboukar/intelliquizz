@@ -1,10 +1,5 @@
-from pprint import pprint
 from flask import Flask, jsonify
-from database.connexion import IntelliquizzDB
-from helpers.converters import Converters
 import gspread
-import json
-
 import json
 
 app = Flask(__name__)
@@ -31,5 +26,4 @@ def universal(subject,level,number):
             questions.append(question)
             if(len(questions) == number):
                 break
-        
-    return {"results": json.dumps(questions)}, 200
+    return json.dumps({'data': questions}), 200
